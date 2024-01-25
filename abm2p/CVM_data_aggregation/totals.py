@@ -13,6 +13,7 @@ def summarize_totals(
             'trips': _summarize_trips(trips=trips),
             'vmt': _summarize_vmt(trips=trips),
             'med_heavy_vmt': _summarize_med_heavy_vmt(trips=trips),
+
         }
     )
 

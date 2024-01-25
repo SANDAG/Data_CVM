@@ -2,7 +2,6 @@ import pandas as pd
 
 
 def summarize_rates(
-    trips: pd.DataFrame,
     totals: pd.DataFrame,
 ) -> pd.DataFrame:
     return pd.DataFrame(
