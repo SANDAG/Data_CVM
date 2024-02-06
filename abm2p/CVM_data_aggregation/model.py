@@ -60,6 +60,19 @@ def _aggregate_industry_cols(emp: pd.DataFrame) -> pd.DataFrame:
                 )
             )
         )
+        .assign(
+            industry=lambda df: df.industry.map(
+                {
+                    'Industry': 'Industrial',
+                    'Wholesale': 'Wholesale',
+                    'Retail': 'Retail',
+                    'Government\\Office': 'Service/Gov/Office/FA',
+                    'Service': 'Service/Gov/Office/FA',
+                    'Transport': 'Transport',
+                    'Fleet Allocator': 'Service/Gov/Office/FA',
+                }
+            )
+        )
         .groupby('industry')
         .sum()
         .assign(emp=lambda df: df.emp.astype('int64'))
@@ -137,6 +150,19 @@ def _categorize_tour(tours: pd.DataFrame) -> pd.DataFrame:
                         'Fleet Allocator',
                     ]
                 )
+            )
+        )
+        .assign(
+            industry=lambda df: df.industry.map(
+                {
+                    'Industry': 'Industrial',
+                    'Wholesale': 'Wholesale',
+                    'Retail': 'Retail',
+                    'Government\\Office': 'Service/Gov/Office/FA',
+                    'Service': 'Service/Gov/Office/FA',
+                    'Transport': 'Transport',
+                    'Fleet Allocator': 'Service/Gov/Office/FA',
+                }
             )
         )
     )

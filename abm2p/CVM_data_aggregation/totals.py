@@ -46,7 +46,7 @@ def _summarize_trips(
             .reset_index()
             .groupby('industry')
             ['weight_trip']
-            .sum()
+            .count()
             .astype('int64')
         )
     )
@@ -74,7 +74,8 @@ def _summarize_med_heavy_vmt(
             trips
             .assign(vmt=lambda df: df.weight_trip * df.distance)
             .query(
-                "`mode` == 'Medium Heavy Duty Truck'"
+                "`mode` == 'Light Heavy Duty Truck'"
+                " or `mode` == 'Medium Heavy Duty Truck'"
                 " or `mode` == 'Heavy Heavy Duty Truck'"
             )
             .groupby('industry')
